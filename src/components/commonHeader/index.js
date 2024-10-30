@@ -7,40 +7,45 @@ import {
 import './index.css'
 import { useDispatch, useSelector } from "react-redux";
 import { changeCollapsed } from "../../store/reducers/tab";
+import { useNavigate } from "react-router-dom";
 const { Header } = Layout;
-//登出
-const logout=()=>{
-console.log('你点击了退出');
 
-}
-//个人中心
-const PersonalCenter=()=>{
-    console.log('你点击了个人中心');
-}
-
-const items = [
-    {
-        key: '1',
-        label: (
-            <a target="_blank" onClick={PersonalCenter}>
-                个人中心
-            </a>
-        ),
-    },
-    {
-        key: '2',
-        label: (
-            <a target="_blank" onClick={logout}>
-                退出
-            </a>
-        ),
-        // disabled: true,
-    }
-];
 
 const CommonHeader = () => {
-    const collapsed=useSelector(state=>state.tab.isCollapsed)
-    const dispatch=useDispatch()
+    const collapsed = useSelector(state => state.tab.isCollapsed)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    //登出
+    const logout = () => {
+        navigate('/login')
+        console.log('你点击了退出');
+
+    }
+    //个人中心
+    const PersonalCenter = () => {
+        console.log('你点击了个人中心');
+    }
+
+    const items = [
+        {
+            key: '1',
+            label: (
+                <a target="_blank" onClick={PersonalCenter}>
+                    个人中心
+                </a>
+            ),
+        },
+        {
+            key: '2',
+            label: (
+                <a target="_blank" onClick={logout}>
+                    退出
+                </a>
+            ),
+            // disabled: true,
+        }
+    ];
 
     return (
         <Header className="header-container">
@@ -53,7 +58,7 @@ const CommonHeader = () => {
                     height: 32,
                     backgroundColor: '#fff'
                 }}
-                onClick={()=>dispatch(changeCollapsed())}
+                onClick={() => dispatch(changeCollapsed())}
             />
             <Dropdown menu={{ items }}>
                 <Avatar size={36} src={<img src={require('../../assets/images/user.png')}></img>}></Avatar>

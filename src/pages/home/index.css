@@ -1,16 +1,20 @@
-.home img{
-width: 150px;
-height: 150px;
-border-radius: 50%;
-margin-right: 40px;
+.home img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 40px;
 }
 
-.home .name{
+.home .name {
     font-size: 32px;
     margin-bottom: 10px;
 }
 
-.home .user{
+p {
+    margin: 0;
+}
+
+.home .user {
     display: flex;
     align-items: center;
     padding-bottom: 20px;
@@ -19,14 +23,62 @@ margin-right: 40px;
 
 }
 
-.home .login-info p{
+.home .login-info p {
     line-height: 28px;
     font-size: 14px;
     color: #999999;
 }
 
-.home .login-info p span{
-    color:#666666;
+.home .login-info p span {
+    color: #666666;
     margin-left: 60px;
 
+}
+
+.table-container {
+    margin-top: 10px;
+}
+
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.list-container .list-card {
+    width: 33%;
+}
+.list-container .list-card .icon-box{
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    line-height: 85px;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.list-container .ant-card-body{
+    display: flex;
+}
+
+.icon-box .anticon{
+    font-size: 30px;
+}
+
+.list-card .detail{
+    margin-left: 15px;
+}
+
+.list-card .detail .num{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.list-card .detail .txt{
+    font-size: 14px;
+    text-align: center;
+    color:#999999
 }

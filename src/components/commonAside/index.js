@@ -1,8 +1,9 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
 import * as Icons from '@ant-design/icons';
-import {  useSelector } from 'react-redux';
-import {  useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { changeTabList } from '../../store/reducers/tab';
 
 const { Sider } = Layout;
 
@@ -68,18 +69,32 @@ const slideItems = mockData.map(item => {
 })
 
 const CommonAside = () => {
-    const collapsed=useSelector(state=>state.tab.isCollapsed)
-    const navigate=useNavigate()
-    const onclick=(e)=>{
-        console.log(e);
-        navigate(e.key)
+    const collapsed = useSelector(state => state.tab.isCollapsed)
+    const navigate = useNavigate()
+    const dispatch=useDispatch()
+
+    const onclick = (e) => {
+        // console.log(e);
+        const keyPath = e.keyPath
         
+        let data = {children:mockData}
+        while (keyPath.length) {
+            let key = keyPath.pop()
+            data = data.children.find(val => val.path === key)
+        }
+        dispatch(changeTabList({
+            label:data.label,
+            name:data.name,
+            path:data.path
+        }))
+        navigate(e.key)
+
     }
-    
+
 
     return (
         <Sider trigger={null} collapsible collapsed={collapsed}>
-            <h3 className='app-name'>{collapsed?'通用':'通用后台管理系统'}</h3>
+            <h3 className='app-name'>{collapsed ? '通用' : '通用后台管理系统'}</h3>
             <Menu
                 theme="dark"
                 mode="inline"
