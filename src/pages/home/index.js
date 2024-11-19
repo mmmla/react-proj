@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 import './index.css'
 import { getTableData } from "../../utils"
 import MyECharts from '../../components/ECharts'
+import dayjs from "dayjs"
 
 const columns=[
     {
@@ -58,32 +59,32 @@ const mockListData=[
         color:'#2ec7c9'
     },
     {
-        name:'本月支付订单',
-        value:1221,
+        name:'上月支付订单',
+        value:2250,
         icon:'CheckCircleOutlined',
         color:'#2ec7c9'
     },
     {
-        name:'本月支付订单',
-        value:1221,
+        name:'本月未支付订单',
+        value:882,
         icon:'CheckCircleOutlined',
         color:'#2ec7c9'
     },
     {
-        name:'本月支付订单',
-        value:1221,
+        name:'上月未支付订单',
+        value:1102,
         icon:'CheckCircleOutlined',
         color:'#2ec7c9'
     },
     {
-        name:'本月支付订单',
-        value:1221,
+        name:'本日支付订单',
+        value:154,
         icon:'CheckCircleOutlined',
         color:'#2ec7c9'
     },
     {
-        name:'本月支付订单',
-        value:1221,
+        name:'昨日支付订单',
+        value:128,
         icon:'CheckCircleOutlined',
         color:'#2ec7c9'
     }
@@ -127,8 +128,8 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="login-info">
-                        <p>上次登录地点：<span>2023-9-8</span></p>
-                        <p>上次登录时间：<span>四川</span></p>
+                        <p>上次登录地点：<span>四川</span></p>
+                        <p>上次登录时间：<span>{dayjs(new Date()).format('YYYY-MM-DD')}</span></p>
                     </div>
                 </Card>
                 <Card hoverable className="table-container">
