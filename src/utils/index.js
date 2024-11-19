@@ -16,13 +16,6 @@ export const getTableData=(url,data)=>{
     })
 }
 
-export const getLogin=(url,data)=>{
-    return request({
-        url,
-        method:'post',
-        data
-    })
-}
 
 
 export const post=(url,data)=>{
@@ -42,6 +35,13 @@ export const get=(url,params)=>{
     })
 }
 
+
+//登录signIn
+export const getLogin=(data)=>request.post('login',data)
+
+//注册signUp
+export const addAdminUser=(data)=>request.post('login/addAdminUser',data)
+
 //用户管理   userTable
 
 //新增用户
@@ -55,4 +55,6 @@ export const changeUser=(data)=>request.patch(`/user/${data.id}`,data)
 
 //删除用户
 export const delUser=(id)=>request.delete(`/user/${id}`)
+
+
 

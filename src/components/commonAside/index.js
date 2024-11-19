@@ -74,7 +74,7 @@ const CommonAside = () => {
     const dispatch=useDispatch()
 
     const onclick = (e) => {
-        // console.log(e);
+        console.log(e);
         const keyPath = e.keyPath
         
         let data = {children:mockData}

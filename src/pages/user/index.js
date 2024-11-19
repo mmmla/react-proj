@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Button, Input, Table, Space, Modal, Form, InputNumber, DatePicker, Select } from "antd"
 import './index.css'
-import { addUser, getList,changeUser, delUser } from "../../utils"
+import { addUser, getList, changeUser, delUser } from "../../utils"
 import dayjs from "dayjs"
 import { render } from "@testing-library/react"
 
@@ -46,7 +46,7 @@ const User = () => {
             title: '出生日期',
             dataIndex: 'date',
             width: '160px',
-            render:(v)=>dayjs(v).format('YYYY-MM-DD')
+            render: (v) => dayjs(v).format('YYYY-MM-DD')
         },
         {
             title: '地址',
@@ -69,7 +69,7 @@ const User = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [form] = Form.useForm()
     const [tableData, setTableData] = useState(data)
-    const [currentId,setCurrentId]=useState()
+    const [currentId, setCurrentId] = useState()
 
     const handleChange = (record) => {
         console.log(record.name);
@@ -86,7 +86,7 @@ const User = () => {
         }
         setIsModalOpen(true)
     }
-    const handleDel =async (record) => {
+    const handleDel = async (record) => {
         // const nextData = tableData.filter(v => v.id !== record.id)
         // setTableData(nextData)
         await delUser(record.id)
@@ -102,25 +102,19 @@ const User = () => {
     const onFinish = async () => {
         try {
             const values = await form.validateFields();
-            if(currentId){
-                const res = await changeUser({ id:currentId,...values})
+            let res = ''
+            if (currentId) {
+                res = await changeUser({ id: currentId, ...values })
                 console.log(res);
-                //成功后关闭弹窗，后端响应拦截器逻辑未完善
-                if(res){
-                    setIsModalOpen(false);
-                }
-                
-            }else{
-                const res = await addUser(values)
-                console.log(res);
+            } else {
+                res = await addUser(values)
+                // console.log(res);
+            }
+            //成功后关闭,此处应判断成功再关，如res.data.message='success'
+            if (res?.data) {
+                setIsModalOpen(false);
             }
             initTable()
-
-            // if(res.status==='success'){
-            //     setIsModalOpen(false);
-            // }
-            // 如果处理成功，您可以关闭模态框  
-
         } catch (error) {
             // 校验失败时，这里的 error 会包含校验错误信息  
             // 通常不需要显式处理，因为 Ant Design 会自动显示错误信息  
@@ -144,9 +138,9 @@ const User = () => {
         initTable(v)
     }
 
-    const initTable = async (search='') => {
+    const initTable = async (search = '') => {
         const res = await getList(search)
-        // console.log(search);
+        console.log(res);
         setTableData(res)
     }
 

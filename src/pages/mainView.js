@@ -1,10 +1,11 @@
 import React from 'react';
 import CommonAside from '../components/commonAside';
 
-import {  Layout, theme } from 'antd';
+import { Layout, theme } from 'antd';
 import CommonHeader from '../components/commonHeader';
 import CommonTag from '../components/commonTag'
 import { Outlet } from 'react-router-dom';
+import RouterAuth from '../router/routerAuth';
 const { Content } = Layout;
 // import { Outlet } from "react-router-dom"
 
@@ -14,24 +15,27 @@ const Main = () => {
     } = theme.useToken();
 
     return (
-        <Layout className='main-container'>
-            <CommonAside></CommonAside>
-            <Layout>
-                <CommonHeader></CommonHeader>
-                <CommonTag></CommonTag>
-                <Content
-                    style={{
-                        margin: '24px 16px',
-                        padding: 24,
-                        minHeight: 280,
-                        background: colorBgContainer,
-                        borderRadius: borderRadiusLG,
-                    }}
-                >
-                    <Outlet></Outlet>
-                </Content>
+        <RouterAuth>
+            <Layout className='main-container'>
+                <CommonAside></CommonAside>
+                <Layout>
+                    <CommonHeader></CommonHeader>
+                    <CommonTag></CommonTag>
+                    <Content
+                        style={{
+                            margin: '24px 16px',
+                            padding: 24,
+                            minHeight: 280,
+                            background: colorBgContainer,
+                            borderRadius: borderRadiusLG,
+                        }}
+                    >
+                        <Outlet></Outlet>
+                    </Content>
+                </Layout>
             </Layout>
-        </Layout>
+        </RouterAuth>
+
     );
 }
 

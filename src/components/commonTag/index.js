@@ -15,18 +15,14 @@ const CommonTag = () => {
 
     const handleClose = () => {
         dispatch(delTablist({ path: location.pathname }))
-        console.log(tabList[tabList.length - 1].path);
+        // console.log(tabList[tabList.length - 1].path);
     }
     const handleClick=(path)=>{
         navigate(path)
     }
 
     useEffect(() => {
-        if (tabList.length == 0) {
-            navigate('/home')
-        } else {
-            navigate(tabList[tabList.length - 1].path)
-        }
+        navigate(tabList[tabList.length - 1].path)
     }, [tabList])
 
     return (
@@ -34,7 +30,7 @@ const CommonTag = () => {
             {tabList.map(e => {
                 return (
                     e.path === location.pathname ?
-                        <Tag key={e.name} color="#55acee" closeIcon onClose={handleClose}>{e.label}</Tag>
+                        <Tag key={e.name} color="#55acee" closeIcon={tabList.length===1?false:true} onClose={handleClose}>{e.label}</Tag>
                         :
                         <Tag onClick={()=>handleClick(e.path)} key={e.name} >{e.label}</Tag>
                 )

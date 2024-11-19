@@ -18,9 +18,8 @@ const CommonHeader = () => {
 
     //登出
     const logout = () => {
+        localStorage.removeItem('bearerToken')
         navigate('/login')
-        console.log('你点击了退出');
-
     }
     //个人中心
     const PersonalCenter = () => {
