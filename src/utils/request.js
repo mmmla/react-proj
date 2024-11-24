@@ -1,4 +1,6 @@
 import axios from "axios";
+import { redirect, useNavigate } from "react-router-dom";
+import EventBus from "./eventBus";
 
 const baseURL = 'http://localhost:3001/'
 
@@ -29,8 +31,15 @@ service.interceptors.request.use((config) => {
 })
 
 //响应拦截器配置
-service.interceptors.response.use((config) => {
+service.interceptors.response.use(config => {
 return config.data.data
+},error=>{
+    const { response } = error;
+    //token失效重定向
+    if (response && response.status === 401) {
+        EventBus.emit('redirect')
+    }
+    return Promise.reject(response)
 })
 
 export default service

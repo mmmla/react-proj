@@ -72,7 +72,7 @@ const User = () => {
     const [currentId, setCurrentId] = useState()
 
     const handleChange = (record) => {
-        console.log(record.name);
+        // console.log(record.name);
         //编辑
         if (record.name) {
             setCurrentId(record.id)
@@ -105,7 +105,7 @@ const User = () => {
             let res = ''
             if (currentId) {
                 res = await changeUser({ id: currentId, ...values })
-                console.log(res);
+                // console.log(res);
             } else {
                 res = await addUser(values)
                 // console.log(res);
@@ -139,9 +139,12 @@ const User = () => {
     }
 
     const initTable = async (search = '') => {
-        const res = await getList(search)
-        console.log(res);
-        setTableData(res)
+        try{
+            const res = await getList(search)
+            setTableData(res)
+        }catch(error){
+            console.log(error);   
+        }  
     }
 
 

@@ -56,5 +56,8 @@ export const changeUser=(data)=>request.patch(`/user/${data.id}`,data)
 //删除用户
 export const delUser=(id)=>request.delete(`/user/${id}`)
 
+//验证token是否合法
+export const verifyToken=(token)=>request.get('/login/verifyToken',{params:{data:token}})
+
 
 
