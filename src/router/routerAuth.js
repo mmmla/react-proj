@@ -53,10 +53,7 @@ const RouterAuth = ({ children }) => {
 
     if (!isAuthenticated) {
         // 在这个分支中，由于我们已经在useEffect中处理了重定向，
-        // 所以这里实际上不会执行到。但是为了代码的完整性，还是保留这个分支。
-        // 注意：在实际情况中，如果isAuthenticated为false，
-        // 那么它应该已经在useEffect中被重定向了，所以这里不会渲染任何东西。
-        return null; // 或者您可以返回一个更友好的加载/重定向提示
+        return null; 
     }
 
     return children;
